@@ -4,6 +4,12 @@ The staking calculator is part of the existing dashboard. It posts to `/api/calc
 
 Locally, the API listens on `127.0.0.1`. On Vercel, the same route is a serverless function. There is no database and no third-party data service.
 
+## Live preview
+
+https://defi-staking-rewards-calculator.vercel.app/dashboard
+
+The Vercel project is connected to this GitHub repository, so a push to `main` publishes a new production build.
+
 ## Setup
 
 Node.js 18 or later.

@@ -322,7 +322,7 @@ const StakingCalculator = () => {
         )}
         {status === "loading" && (
           <Typography sx={{ color: theme.palette.text.secondary }}>
-            Calculating on the local API…
+            Calculating…
           </Typography>
         )}
         {status === "error" && <Alert severity="error">{message}</Alert>}
