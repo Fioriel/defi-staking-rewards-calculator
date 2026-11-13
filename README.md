@@ -1,8 +1,8 @@
 # DeFi Dashboard · Staking Rewards Calculator
 
-The staking calculator is part of the existing dashboard. It sends inputs to a local Express API and renders the projected balance, rewards, and a growth chart.
+The staking calculator is part of the existing dashboard. It posts to `/api/calculate-rewards` on the same host and renders the projected balance, rewards, and a growth chart.
 
-The API listens on `127.0.0.1` only. The page calls that loopback address and does not use a database or any third-party service.
+Locally, the API listens on `127.0.0.1`. On Vercel, the same route is a serverless function. There is no database and no third-party data service.
 
 ## Setup
 
@@ -26,7 +26,7 @@ npm run server
 
 Then open http://127.0.0.1:5025/dashboard. The page calls `/api/calculate-rewards` on that same server.
 
-The dev server port and host are set in `.env.development` (`PORT=3010`, `HOST=127.0.0.1`) so the page stays on loopback. Port 3000 is left alone because another local process may already be using it. `npm start` runs the API and the React dev server together. Set `API_PORT` to move the API, and keep `src/config/config.ts` pointed at the same loopback URL.
+The dev server port and host are set in `.env.development` (`PORT=3010`, `HOST=127.0.0.1`). Port 3000 is left alone because another local process may already be using it. `npm start` runs the API and the React dev server together. Set `API_PORT` to move the local API. The page always calls `/api/calculate-rewards` on its own host.
 
 ## API
 
