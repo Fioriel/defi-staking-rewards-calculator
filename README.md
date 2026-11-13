@@ -14,8 +14,17 @@ npm test
 npm start
 ```
 
-- Dashboard: http://127.0.0.1:3010/dashboard
+- Dashboard during development: http://127.0.0.1:3010/dashboard
 - API: http://127.0.0.1:5025/api/calculate-rewards
+
+To serve the built dashboard and the API from one address:
+
+```bash
+npm run build
+npm run server
+```
+
+Then open http://127.0.0.1:5025/dashboard. The page calls `/api/calculate-rewards` on that same server.
 
 The dev server port and host are set in `.env.development` (`PORT=3010`, `HOST=127.0.0.1`) so the page stays on loopback. Port 3000 is left alone because another local process may already be using it. `npm start` runs the API and the React dev server together. Set `API_PORT` to move the API, and keep `src/config/config.ts` pointed at the same loopback URL.
 

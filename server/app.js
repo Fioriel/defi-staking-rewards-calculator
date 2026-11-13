@@ -1,7 +1,11 @@
 'use strict';
 
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const { calculateRewards, CalculatorError } = require('./services/rewardsCalculator');
+
+const buildDir = path.join(__dirname, '..', 'build');
 
 const LOCAL_ORIGIN = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 
@@ -54,6 +58,17 @@ function createApp() {
       next(err);
     }
   });
+
+  if (fs.existsSync(buildDir)) {
+    app.use(express.static(buildDir));
+    app.get('*', (req, res, next) => {
+      if (req.path.startsWith('/api/')) {
+        next();
+        return;
+      }
+      res.sendFile(path.join(buildDir, 'index.html'));
+    });
+  }
 
   app.use(errorHandler);
   return app;
